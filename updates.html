@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urdu Typing Master - اپڈیٹس</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Urdu Typing Master</div>
+        <ul class="nav-links">
+            <li><a href="index.html">ہوم</a></li>
+            <li><a href="downloads.html">ڈاؤن لوڈز</a></li>
+            <li><a href="updates.html" class="active">اپڈیٹس</a></li>
+            <li><a href="login.html">ایڈمن لاگ ان</a></li>
+        </ul>
+    </nav>
+
+    <section class="updates-section" style="padding: 60px 8%; text-align: center;">
+        <div class="update-container" style="background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; text-align: right;">
+            <h2 style="text-align: center; color: #2b6cb0; margin-bottom: 20px;">سافٹ ویئر اپڈیٹس ہسٹری</h2>
+            
+            <div class="version-badge" style="display: inline-block; background: #2b6cb0; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-bottom: 20px;">
+                موجودہ ورژن: <span id="current-version">لوڈنگ...</span>
+            </div>
+
+            <h3>نیا کیا ہے؟ (What's New)</h3>
+            <ul id="patch-notes-list" style="margin-top: 15px; padding-right: 20px; line-height: 2;">
+                </ul>
+        </div>
+    </section>
+
+    <footer class="footer" style="position: fixed; bottom: 0; width: 100%;">
+        <p>&copy; 2026 Urdu Typing Master. تمام حقوق محفوظ ہیں۔</p>
+    </footer>
+
+    <script>
+        fetch('version.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('current-version').innerText = data.latest_version;
+                
+                const list = document.getElementById('patch-notes-list');
+                list.innerHTML = ''; // پرانا ڈیٹا صاف کریں
+                
+                // جے سن سے تمام پوائنٹس نکال کر لسٹ میں ڈالنا
+                data.patch_notes.forEach(note => {
+                    const li = document.createElement('li');
+                    li.innerText = note;
+                    list.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('ورژن ڈیٹا لوڈ کرنے میں مسئلہ ہوا:', error);
+                document.getElementById('current-version').innerText = "v1.0.0";
+            });
+    </script>
+</body>
+</html>

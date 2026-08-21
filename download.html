@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urdu Typing Master - ڈاؤن لوڈز</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Urdu Typing Master</div>
+        <ul class="nav-links">
+            <li><a href="index.html">ہوم</a></li>
+            <li><a href="downloads.html" class="active">ڈاؤن لوڈز</a></li>
+            <li><a href="updates.html">اپڈیٹس</a></li>
+            <li><a href="login.html">ایڈمن لاگ ان</a></li>
+        </ul>
+    </nav>
+
+    <section class="download-section">
+        <div class="download-card">
+            <h2>سافٹ ویئر ڈاؤن لوڈ کریں</h2>
+            <p class="download-desc">اردو ٹائپنگ ماسٹر کا تازہ ترین ورژن نیچے دیے گئے بٹن سے ڈاؤن لوڈ کریں۔ انسٹالیشن کے بعد لائسنس ایکٹیویٹ کرنے کے لیے اپنی ہارڈ ویئر آئی ڈی کا استعمال کریں۔</p>
+            
+            <div class="software-info" id="software-info">
+                <p><strong>ورژن:</strong> <span id="version">لوڈنگ...</span></p>
+                <p><strong>فائل کا سائز:</strong> <span id="file-size">لوڈنگ...</span></p>
+                <p><strong>آخری اپڈیٹ:</strong> <span id="release-date">لوڈنگ...</span></p>
+            </div>
+
+            <a href="#" id="download-btn" class="btn btn-primary" style="background-color: #2b6cb0; color: white; display: inline-block; margin-top: 20px;">ڈاؤن لوڈ سیٹ اپ (Setup)</a>
+        </div>
+    </section>
+
+    <footer class="footer" style="position: fixed; bottom: 0; width: 100%;">
+        <p>&copy; 2026 Urdu Typing Master. تمام حقوق محفوظ ہیں۔</p>
+    </footer>
+
+    <script>
+        // data.json سے ڈیٹا پڑھنے کا فنکشن
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('version').innerText = data.current_version;
+                document.getElementById('file-size').bar = data.file_size; // سائز
+                document.getElementById('release-date').innerText = data.release_date;
+                
+                // ڈاؤن لوڈ بٹن کا لنک سیٹ کرنا
+                const dlBtn = document.getElementById('download-btn');
+                dlBtn.href = data.download_url;
+            })
+            .catch(error => {
+                console.error('ڈیٹا لوڈ کرنے میں مسئلہ ہوا:', error);
+                // اگر فائل لوکل کمپیوٹر پر ڈائریکٹ کھولی جائے تو فرضی ڈیٹا دکھا دیں
+                document.getElementById('version').innerText = "v1.0.0";
+                document.getElementById('file-size').innerText = "15.4 MB";
+                document.getElementById('release-date').innerText = "2026-06-21";
+            });
+    </script>
+</body>
+</html>
