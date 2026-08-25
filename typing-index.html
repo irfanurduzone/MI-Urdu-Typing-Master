@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MI اردو ٹائپنگ ماسٹر</title>
+    <style>
+     @font-face {
+	    font-family: 'Jameel Noori Nastaleeq';
+	    src: url('JameelNooriNastaleeq.otf') format('truetype');
+	    font-weight: normal;
+	    font-style: normal;
+	 }
+	 * {
+	    font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', Arial, sans-serif !important;
+        }
+        input, textarea, select, button {
+	    font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', Arial, sans-serif !important;
+	    font-size: 18px !important;
+	}
+       :root {
+			--bg: #08080a;
+			--box: #111115;
+			--color: #0066ff;
+			--accent: #00f0ff;
+			--accent-hover: #49ff87;
+			--border-color: rgba(0, 240, 255, 0.2);
+			--border-glow: rgba(0, 240, 255, 0.1);
+		}
+        body {
+            background: var(--bg);
+            color: white;
+            min-height: 100vh;
+            padding: 15px;
+            overflow-y: auto;
+            border: 5px solid #0099ff !important;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3), inset 0 0 50px rgba(0, 212, 255, 0.05);
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            border: 1px solid transparent;
+            background: linear-gradient(135deg, var(--accent), transparent, var(--accent-hover), transparent) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: 9999;
+            opacity: 0.1;
+        }
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg);
+            padding: 10px 0 15px 0;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.05);
+            margin-bottom: 8px;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            background: var(--box);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+            margin: 0 auto;
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+        }
+        .lock-screen {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 11, 21, 0.98);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            padding: 20px;
+            overflow-y: auto;
+            border: 3px solid var(--accent);
+            box-shadow: inset 0 0 80px rgba(0, 240, 255, 0.05);
+        }
+        .activation-wrapper {
+			display: flex;
+			flex-direction: row;
+			background: var(--box);
+			border: 2px solid #6dd5ff;
+			border-radius: 20px;
+			box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);
+			width: 100%;
+			max-width: 1000px;  /* چوڑائی زیادہ */
+			max-height: 600px;  /* لمبائی کم */
+			overflow: hidden;
+		}
+        .photo-panel {
+			flex: 1;
+			background: #09111d;
+			border-left: 2px solid var(--border-color);
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;  /* center سے flex-start */
+			align-items: center;
+			padding: 8px 12px;
+			text-align: center;
+			min-width: 250px;
+			overflow-y: auto;  /* اگر متن زیادہ ہو تو سکرول */
+		}
+
+			.photo-panel h3,
+			.photo-panel p,
+			.photo-panel li,
+			.photo-panel div {
+			font-size: 22px !important;
+			line-height: 1.7!important;
+			color: #ffffff !important;
+		}
+        .photo-panel img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        .photo-placeholder {
+            border: 2px dashed #555;
+            padding: 40px 20px;
+            color: #888;
+            font-style: italic;
+            border-radius: 10px;
+            background: #050b14;
+            width: 100%;
+        }
+        .lock-box {
+            flex: 1;
+            padding: 35px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .lock-box h2 {
+			font-size: 33px;
+			color: var(--accent);
+			margin-bottom: 5px;
+}
+
+		.lock-box input {
+			width: 90%;                   
+			max-width: 350px;             
+			padding: 10px;
+			border: 1.0px solid rgba(109, 213, 255, .2);
+			border-radius: 11px;
+			margin-bottom: 10px;          
+			background: #09111d;
+			color: white;
+			text-align: center;
+			outline: none;
+			font-size: 22px;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.lock-box input:focus {
+			border-color: var(--accent-hover);
+		}
+
+		.device-id-box {
+			background: #09111d;
+			padding: 10px;
+			border-radius: 9px;
+			color: #ffb703 !important;
+			margin-bottom: 10px;           
+			font-family: monospace;
+			text-align: center;
+			font-size: 20px;
+			letter-spacing: 1px;
+			border: 1px solid var(--border-color);
+			width: 90%;                   
+			max-width: 350px;            
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
+        .btn-whatsapp {
+            background: #25d366 !important;
+            color: #0066ff !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            width: 90%;
+            font-size: 18px;
+        }
+        .top-instruction-btn {
+            padding: 8px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            background: rgba(255, 183, 3, 0.2);
+            color: #ffb703;
+            border: 2px solid #ffb703;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 183, 3, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Noto Nastaliq Urdu', Arial, sans-serif;
+        }
+        .top-instruction-btn:hover {
+            background: #ffb703;
+            color: black;
+            box-shadow: 0 0 25px #ffb703;
+            transform: scale(1.05);
+        }
+        .top-left-clock {
+			background: #f5e6c8;
+			border-radius: 50%;
+			width: 100px;          /* بڑا */
+			height: 100px;         /* بڑا */
+			border: 2px solid #0099ff;   /* باڈر */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0;
+			box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+			margin-right: auto !important;
+			margin-left: 8px !important;
+			flex-shrink: 0;
+              box-shadow: 0 0 8px rgba(0,153,255,0.3);
+		}
+		#analogClock {
+			display: block;
+			width: 100px;          /* بڑا */
+			height: 100px;         /* بڑا */
+			border-radius: 50%;
+		}
+        .header-top {
+            display: flex;
+           justify-content: space-between;
+            align-items: center;
+            direction: ltr; 
+            flex-wrap: wrap;
+			gap: 8px; 
+			width: 100%;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;			
+        }
+        .header-center {
+		 flex: 1;
+		 text-align: center;
+		}
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-left: auto;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 2px;
+            color: var(--accent);
+        }
+        .user-name-display {
+            text-align: center !important;
+	    margin: 0 auto !important;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--accent);
+            padding: 2px 0;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            letter-spacing: 1px;
+        }
+        .user-name-display span {
+	    display: inline-block !important;
+	    visibility: visible !important;
+	    opacity: 1 !important;
+            color: #fff;
+            background: rgba(0, 240, 255, 0.08);
+            padding: 2px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 240, 255, 0.15);
+        }
+        .subtitle {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #ffb703 !important;
+            font-size: 21px;
+        }
+        .main-layout {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+        .sidebar-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .card {
+            background: var(--card);
+            padding: 4px 6px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        .card h3 {
+            color: #88a0c0;
+            margin-bottom: 1px;
+            font-size: 10px;
+            font-weight: 500;
+        }
+        .value {
+            font-size: 15px;
+            font-weight: bold;
+            color: #fff;
+        }
+        #wpm,
+        #accuracy {
+            color: var(--accent);
+        }
+        .timer-card {
+            background: var(--card);
+            padding: 4px 6px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        .timer-card h3 {
+            color: #88a0c0;
+            margin-bottom: 1px;
+            font-size: 10px;
+            font-weight: 500;
+        }
+        .timer-card .value {
+            font-size: 15px;
+            font-weight: bold;
+            color: #ffb703;
+        }
+        .timer-buttons {
+            display: flex;
+            gap: 3px;
+            justify-content: center;
+            margin-top: 3px;
+            flex-wrap: wrap;
+        }
+        .timer-buttons button {
+            padding: 2px 8px;
+            border: 1px solid rgba(255, 183, 3, 0.2);
+            border-radius: 4px;
+            background: rgba(255, 183, 3, 0.1);
+            color: #ffb703;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Nastaliq Urdu', Arial, sans-serif;
+        }
+        .timer-buttons button:hover {
+            background: #ffb703;
+            color: black;
+        }
+        .timer-buttons button.active-timer {
+            background: #ffb703;
+            color: black;
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 183, 3, 0.3);
+        }
+        .typing-area-wrapper {
+            position: relative;
+            background: #09111d;
+            border: 1px solid var(--card);
+            border-radius: 12px;
+            padding: 8px 14px;
+            min-height: 39px;
+            display: flex;
+            align-items: center;
+            direction: rtl;
+            cursor: text;
+        }
+        .typing-area-wrapper.focused {
+            border-color: var(--accent);
+        }
+        #textDisplay {
+            font-size: clamp(27px, 5vw, 43px);
+            line-height: 2.0;
+            color: #4a9eff !important;
+	    opacity: 1 !important;
+            white-space: pre-wrap;
+            width: 90%;
+            text-align: right;
+			padding-right: 5px;
+        }
+        .first-line {
+            color: var(--accent) !important;
+        }
+        .next-char {
+            color: #ffb703 !important;
+            font-weight: bold;
+        }
+        .correct {
+            color: #ffffff !important;
+        }
+        .wrong {
+            color: #ff4d4d !important;
+            background: rgba(255, 77, 77, 0.15);
+            border-bottom: 2px dashed #ff4d4d;
+        }
+        .pending {
+            color: rgba(74, 158, 255, 0.9) !important;
+        }
+        .current::after {
+            display: none !important;
+        }
+        .timer-near-box {
+            position: absolute;
+            left: 9px;
+            top: 19%;
+            transform: translateY(-50%);
+            font-size: 15px;
+            color: var(--accent);
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-family: monospace;
+            direction: ltr;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #09111d;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: -3px;
+        }
+        #progressFill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #00f0ff, #49ff87);
+            transition: width 0.1s ease;
+        }
+        .keyboard {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            direction: ltr;
+            user-select: none;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 240, 255, 0.05);
+        }
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+        }
+        .key {
+            background: linear-gradient(145deg, var(--card), #0a1524);
+            border: 1px solid rgba(109, 213, 255, .12);
+            border-radius: 8px;
+            height: 51px;
+            min-width: 45px;
+            color: #88a0c0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+            transition: all 0.15s ease;
+            font-size: 13px;
+        }
+        .key b {
+            font-size: 11px;
+            color: #49ff87 !important;
+            font-weight: normal;
+        }
+        .key-ur {
+            font-size: 21px;
+            font-weight: Normal;
+            color: #0088ff !important; 
+            line-height: 1.2;
+	    margin-top: -10px;
+        }
+        .key.active {
+            background: #fff !important;
+            color: #000 !important;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            transform: scale(0.92);
+        }
+        .key.next-key-active {
+            border-color: #00f0ff !important;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+        .key.shift-active {
+            border-color: #ffb703 !important;
+            box-shadow: 0 0 15px rgba(255, 183, 3, 0.3);
+        }
+        .key.wide {
+            min-width: 72px;
+        }
+        .key.space {
+            min-width: 220px;
+        }
+        .level-pro .key-ur {
+            font-size: 16px !important;
+        }
+        .level-pro .key b {
+            display: none;
+        }
+        .bottom {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .bottom button {
+            padding: 6px 12px;
+            border: 1px solid rgba(109, 213, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(19, 36, 59, 0.5);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 90px;
+            flex: 1;
+            max-width: 120px;
+        }
+        .bottom button:hover {
+            background: var(--accent);
+            color: black;
+            transform: scale(1.02);
+        }
+        .bottom button.active-level {
+            background: var(--accent);
+            color: black;
+            border-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        .modal-screen {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 11, 21, .75);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999999;
+        }
+        .modal-box {
+            background: rgba(19, 36, 59, .95);
+            border: 1px solid rgba(109, 213, 255, .2);
+            padding: 30px;
+            border-radius: 20px;
+            width: 95%;
+            max-width: 650px;
+            text-align: right;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+        .hidden {
+            display: none !important;
+        }
+		.modal-box h2 {
+			margin-bottom: 0 !important;
+		}
+		.modal-box h3 {
+			margin-top: 0 !important;
+		}
+        .modal-box h3 {
+            color: #ffb703;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 3px;
+        }
+        .modal-box p,
+		.modal-box li {
+			color: #e0e0e0;
+			font-size: 18px;        /* 14px سے 18px */
+			line-height: 2.0;       /* 1.8 سے 2.0 */
+			margin-bottom: 6px;     /* 2px سے 6px */
+		}
+        .modal-box ul {
+            margin-right: 20px;
+        }
+        .btn-close {
+            background: #ff4d4d !important;
+            color: white !important;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn-close:hover {
+            background: #ff3333 !important;
+        }
+        .highlight-text {
+            color: #49ff87;
+            font-weight: bold;
+        }
+        .inner-keyboard-container {
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 12px;
+            background: #09111d;
+        }
+        .inner-keyboard-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        @keyframes shake {
+		 0%, 100% { transform: translateX(0); }
+		  25% { transform: translateX(-5px); }
+		  75% { transform: translateX(5px); }
+		}  
+    </style>
+</head>
+<body>
+    <div class="lock-screen hidden" id="lockScreen">
+    <div class="activation-wrapper">
+        <div class="photo-panel">
+			<div style="display: flex; justify-content: flex-end; margin-bottom: 5px;">
+				<button id="toggleLicenseBtn" onclick="toggleLicenseVoice()" 
+                style="padding: 4px 14px; border-radius: 20px; background: #25d366; border: none; font-weight: bold; cursor: pointer; font-size: 13px; color: #fff; box-shadow: 0 0 10px rgba(37,211,102,0.3); display: flex; align-items: center; gap: 5px; transition: all 0.3s ease;">
+				
+				🔊 سنیں
+			    </button>
+			</div>
+
+			<!-- ✅ h3 بٹن کے باہر (نیچے) -->
+			<h3 style="margin-top:0; color:var(--accent); font-size:14px; margin-bottom:12px;">✍اردو ٹائپنگ ماسٹر — اب اردو لکھنا ہوا نہایت آسان!
+
+		✅یہ اردو ٹائپنگ کی پریکٹس کے لیے ایک بہترین سافٹ ویئر ہے، جس میں فونیٹک (Phonetic) کی بورڈ کا استعمال کیا گیا ہے۔ اس کی بدولت آپ بہت آسانی سے اردو ٹائپنگ سیکھ سکتے ہیں۔
+
+		📢 ضروری نوٹ:
+		❊چونکہ یہ ایک پریمیم (Paid) سافٹ ویئر ہے، اس لیے اسے چلانے کے لیے آپ کو لائسنس کی ضرورت ہوگی۔
+
+		💰لائسنس کی فیس 
+
+		1 سسٹم: ~~700روپے
+
+		5 یا اس سے زیادہ سسٹمز 25% ڈسکاؤنٹ (فی سسٹم 525روپے)
+
+		🔑 لائسنس حاصل کرنے کا طریقہ:
+		📨سافٹ ویئر اوپن کرنے پر آپ کی اسکرین پر ایک ہارڈ ویئر آئی ڈی (Hardware ID) ظاہر ہوگی۔ وہ آئی ڈی ہمیں نیچے دیے گئے نمبر پر واٹس ایپ کر دیں۔ اسی آئی ڈی کے ذریعے آپ کا لائف ٹائم لائسنس تیار کیا جائے گا۔آپ اسکرین کی تصویر بھی بھیج سکتے ہیں بس آئی ڈی دکھنا چاہییے
+
+		💡 آپ کی تسلی کے لیے:
+		ہارڈ ویئر آئی ڈی لینے کا ہمارا مقصد صرف اور صرف یہ ہے کہ آپ کا لائسنس اسی مخصوص آئی ڈی پر بنے، کیونکہ یہ لائسنس صرف ایک ہی کمپیوٹر (PC) پر کام کرے گا۔ آپ کا ڈیٹا بالکل محفوظ ہے، فکرمند ہونے کی بلکل بھی ضرورت نہیں۔
+
+		📲 رابطہ برائے واٹس ایپ:
+		923337550347
+
+		شکریہ! 🤲</h3>
+
+			<img src="keyboard-guide.png" alt="Urdu Keyboard Guide" onerror="this.style.display='none'; document.getElementById('pop-fallback').style.display='block';">
+			<div id="pop-fallback" class="photo-placeholder" style="display:none;">
+				[یہاں آپ کی "keyboard-guide.png" تصویر نظر آئے گی]
+			</div>
+		</div>
+
+        <div class="lock-box">
+		<!-- ⭐ بٹن + h2 ایک ساتھ (ایک ہی لائن میں) -->
+		<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+			<h2 style="margin: 0; font-size: 33px; color: var(--accent);">اردو ٹائپنگ ماسٹر</h2>
+			<button id="toggleLockBoxBtn" onclick="toggleLockBoxVoice()" 
+					style="padding: 4px 14px; border-radius: 20px; background: #6dd5ff; border: none; font-weight: bold; cursor: pointer; font-size: 13px; color: #000; box-shadow: 0 0 10px rgba(109,213,255,0.3); display: flex; align-items: center; gap: 5px; transition: all 0.3s ease;">
+				🔊 سنیں
+			</button>
+		</div>
+
+			<p style="margin-bottom:13px;color:#ccc;font-size:18px;">٭ہارڈویئر آئی ڈی    ↓</p>
+			<div class="device-id-box" id="deviceIdDisplay">UTM-LOADING</div>
+
+			<input type="text" id="userNameInput" placeholder="اپنا نام لکھیں, اسکرین پر شو ہوگا ورنہ MI لکھا آئے گا" autocomplete="off" style="width:90%; max-width: 350px;" />
+			<input type="text" id="licenseInput" placeholder="یہاں لائسنس درج کریں" autocomplete="off" />
+
+			<button onclick="unlockApp()" style="width:100%; padding:12px; border-radius:10px; background:var(--accent); border:none; font-weight:bold; cursor:pointer; font-size:15px; color:#0066ff;">ایکٹیویٹ کریں 🔑</button>
+			<p id="lockMsg" style="margin-top:5px;color:#ff6b6b;font-size:18px; margin-bottom:0;"></p>
+			<hr style="border:0;border-top:1px solid rgba(255,255,255,.1);margin:12px 0; width:90%;">
+			<a id="whatsappLink" href="https://wa.me/923337550347?text=سلام!%20میرا%20کمپیوٹر%20کوڈ%20ہے:%20" target="_blank" class="btn-whatsapp">ہارڈویئر آئی ڈی واٹس ایپ پر بھیجیں 💬</a>
+
+			<!-- ⭐ یوٹیوب لنک -->
+			<div style="margin-top: 12px; padding: 8px; background: rgba(255,0,0,0.1); border: 1px solid #ff4444; border-radius: 10px;">
+				<a href="https://www.youtube.com/@Urdu_typing_masters" target="_blank" style="color: #ff4444; text-decoration: none; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+					🎥 <span style="font-weight: bold;">✫سافٹویئرکیسےکام کرتاہے؟</span>
+				</a>
+				<p style="margin: 4px 0 0 0; font-size: 12px; color: #aaa; text-align: center;">✍اس ویڈیو میں ایپ استعمال کرنے کا مکمل طریقہ بتایا گیا ہے۔</p>
+			</div>
+
+			<div style="margin-top: 8px; padding: 8px; background: rgba(37, 211, 102, 0.15); border: 1px solid #25d366; border-radius: 10px;">
+				<a href="https://wa.me/923337550347?text=سلام!%20مجھے%20لائسنس%20چاہیے" target="_blank" style="color: #25d366; text-decoration: none; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+					💬 <span style="font-weight: bold;">واٹس ایپ پر رابطہ کریں</span>
+				</a>
+				<p style="margin: 2px 0 0 0; font-size: 11px; color: #aaa; text-align: center;">لائسنس کے لیے براہِ راست واٹس ایپ کریں</p>
+			</div>
+		</div>
+    </div>
+</div>
+
+	<!-- ===== ہدایات موڈل ===== -->
+	<div class="modal-screen hidden" id="instructionModal">
+		<div class="modal-box">
+        <h2>اہم ہدایات اور رہنمائی</h2>
+        <div style="display: flex; justify-content: flex-start; margin-bottom: 10px;">
+            <button onclick="toggleInstructionsVoice()" 
+                    style="padding: 4px 14px; border-radius: 20px; background: #ffb703; border: none; font-weight: bold; cursor: pointer; font-size: 13px; color: #000; box-shadow: 0 0 10px rgba(255,183,3,0.3); display: flex; align-items: center; gap: 5px; transition: all 0.3s ease;" 
+                    id="instructionsVoiceBtn">
+                🔊 سنیں (ہدایات)
+            </button>
+        </div>
+
+			<h3>1۔ یہ سافٹ ویئر کیسے کام کرتا ہے؟</h3>
+			<p><span class="highlight-text">فونیٹک (Phonetic) کی بورڈ</span> کیا ہے؟
+			فونیٹک کی بورڈ کا طریقہ کار بہت سادہ ہے۔ اس کی مدد سے آپ کمپیوٹر کے کسی بھی سافٹ ویئر (جیسے MS Word, Photoshop یا InPage وغیرہ) میں آسانی سے اردو ٹائپ کر سکتے ہیں۔
+
+			ان پیج (InPage): اس سافٹ ویئر میں فونیٹک کی بورڈ پہلے سے موجود ہوتا ہے۔
+
+			دیگر سافٹ ویئرز: ان پیج کے علاوہ باقی تمام سافٹ ویئرز میں اردو لکھنے کے لیے آپ کو الگ سے "فونیٹک کی بورڈ" ڈاؤن لوڈ اور انسٹال کرنا پڑتا ہے۔
+
+			لکھنے کا طریقہ: اس کی بورڈ میں انگریزی حروف کی آواز (Sound) کے حساب سے اردو حروف سیٹ ہوتے ہیں۔ مثلاً:
+
+			a دبانے سے ا (الف) لکھا جائے گا۔
+
+			b دبانے سے ب لکھا جائے گا۔ جیسے تصویر میں نظر آ رہا ہے۔</p>
+
+			<div class="inner-keyboard-container">
+				<h4 style="margin-top:0; color:var(--accent); margin-bottom:10px; font-size:15px; text-align:center;">اردو فونیٹک کی بورڈ لے آؤٹ</h4>
+				<img src="inner-keyboard.png" alt="Urdu Phonetic Keyboard" onerror="this.style.display='none'; document.getElementById('inner-fallback').style.display='block';">
+				<div id="inner-fallback" class="photo-placeholder" style="display:none;">
+					[ "inner-keyboard.png" ]
+				</div>
+			</div>
+
+			<h3>2۔ لکھائی یا ان پٹ کا مسئلہ (ٹائپنگ نہ ہونا)</h3>
+			<p>اگر آپ بٹن دبا رہے ہیں اور اسکرین پر کچھ نہیں لکھا جا رہا، تو درج ذیل چیزیں چیک کریں:</p>
+			<ul>
+				<li>پہلے ٹائپنگ ایریا (باکس) کے اندر ماؤس سے کلک کریں تاکہ وہ فعال ہو جائے۔ کی بورڈ لے آوٹ کو چیک اور زبان کہ کی بورڈ میں کونسی زبان منتخب ہے۔</li>
+				<li>چیک کریں کہ آپ کے کمپیوٹر کا <span class="highlight-text">Caps Lock</span> آن نہ ہو۔ کیپس لاک بند ہونا چاہیے۔</li>
+			</ul>
+
+			<!-- ⭐ یوٹیوب لنک (ہدایات موڈل کے اندر) -->
+			<h3>🎥 ویڈیو ٹیوٹوریل</h3>
+			<p>
+				ایپ کو بہتر طریقے سے سمجھنے کے لیے یہ ویڈیو دیکھیں:
+				<br>
+				<a href="https://www.youtube.com/@Urdu_typing_masters" target="_blank" style="color: #49ff87; text-decoration: underline; font-size: 18px; display: inline-block; margin-top: 5px;">
+					🎬 یوٹیوب چینل پر جائیں
+				</a>
+			</p>
+
+			<button class="btn-close" onclick="toggleInstructions(); checkKeyboardLayout();">سمجھ گیا (بند کریں)</button>
+		</div>
+	</div>
+
+   <div class="sticky-header">
+    <div class="header-top">
+        <div class="header-left">
+			<div class="top-left-clock" style="position:relative;">
+				<canvas id="analogClock" width="100" height="100"></canvas>
+				<!-- ⭐ جملہ — نیچے (6 بجے کے قریب) -->
+					<div style="position:absolute; bottom:18px; left:0; right:0; text-align:center; color:#ff66b2; font-size:13px; font-weight:bold;">
+					 وقت کی قدر کریں
+				</div>
+			</div>
+		</div>
+        <div class="header-center">
+	       <div class="user-name-display">
+	            <span>👤 <span id="displayUserName">---</span></span>
+	        </div>
+	    </div>
+	     <div class="header-right">
+		      <button onclick="playWelcomeSound(); openSecureWindow('english-practice.html')">🔤 Inglish</button>
+              <button class="top-instruction-btn" onclick="toggleInstructions()">? فوری ہدایات</button>
+		     <select id="keyboardMode" onchange="setKeyboardMode(this.value)" style="padding:6px 10px;border-radius:8px;background:#09111d;color:white;border:1px solid var(--accent);font-size:13px;">
+			 <option value="phonetic">🔤 فونیٹک</option>
+			 <option value="default">🖥️ ڈیفالٹ</option>
+			 </select>
+		   </div>
+	    </div>
+    </div>
+		 <h1 class="title">MI اردو ٹائپنگ ماسٹر</h1>
+		 <p class="subtitle">مسلسل محنت کامیابی کی ضامن ہے</p>
+
+        <div class="main-layout">
+            <div class="sidebar-bar">
+                <div class="card">
+                    <h3>رفتار (WPM)</h3>
+                    <div class="value" id="wpm">0</div>
+                </div>
+                <div class="card">
+                    <h3>غلطیاں</h3>
+                    <div class="value" id="mistakes">0</div>
+                </div>
+                <div class="card">
+                    <h3>درستگی</h3>
+                    <div class="value" id="accuracy">100%</div>
+                </div>
+
+                <div class="timer-card">
+                    <h3>وقت (ٹیسٹ)</h3>
+                    <div class="value" id="timer">60</div>
+                    <div class="timer-buttons">
+                        <button class="active-timer" onclick="setTimer(30)">30s</button>
+                        <button class="active-timer" onclick="setTimer(60)">60s</button>
+                        <button onclick="setTimer(120)">120s</button>
+                        <button onclick="setTimer(300)">300s</button>
+                    </div>
+                </div>
+            </div>
+            <div class="main-content">
+                <div id="lessonsSection">
+                    <div class="typing-area-wrapper" id="wrapperArea" onclick="focusInput()">
+                        <div id="textDisplay"></div>
+                        <div id="enterHint" style="color:#ffb703;font-size:20px;text-align:right;display:none;margin-top:5px;padding-right:80px;direction:ltr;width:40%;">⏎ Enter → اگلا سبق</div>
+                        <div class="timer-near-box">⏱ <span id="timerNearBox">60</span>s</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progressFill"></div>
+                    </div>
+                </div>
+
+                <div class="keyboard" id="keyboard"></div>
+
+                <div class="bottom">
+                    <button onclick="resetTest()">🔄 ری سیٹ</button>
+                    <button onclick="nextLesson()">📖 اگلا سبق</button>
+                    <button onclick="changeTheme()">🎨 تھیم</button>
+                    <button id="btn-beginner" class="active-level" onclick="setLevel('beginner')">📗 ابتدائی</button>
+                    <button id="btn-intermediate" onclick="setLevel('intermediate')">📘 درمیانہ</button>
+					<button onclick="playWelcomeSound(); openSecureWindow('notepad.html')">📝 ایڈوانس</button>
+                    <button onclick="playWelcomeSound(); openSecureWindow('speedtest2.html')">⚡ اسپیڈ</button>				
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="keySound" src="key.mp3" preload="auto"></audio>
+    <audio id="errorSound" src="error.mp3" preload="auto"></audio>
+	<audio id="welcomeAudio" src="welcome.mp3" preload="auto"></audio>
+	<audio id="licenseVoice" src="license-voice.mp3" preload="auto"></audio>
+	<audio id="instructionsVoice" src="instructions-voice.mp3" preload="auto"></audio>
+	<audio id="lockBoxVoice" src="lock-box-voice.mp3" preload="auto"></audio>
+
+    <script>
+       const levels = {
+			beginner: [
+				'ا س د ف گ ھ ج ک ل ھ ج ک ل ف د س ',
+				'ق و ع ر ت ے ی ہ پ ز ش چ ط ب ن م ظاہر',
+				'ڈ ف غ ح ض خ ذ ژ ث ظ ں م ۃ ٹ ڑ  ص ثمر',
+				'فونیٹک کی بورڈ میں الف مدہ لکھنے کا اصول یوں  ہے',
+				' پہلے اے برابر ہے الف پھر شفٹ کے ساتھ اےبرابر ہے مدہ',
+				'محمد عرفان ساجد مرتضیٰ رضوان صہیب ہارون',  
+				'علم و دانش انسان کی عظمت کی پہچان ہے',      
+			],
+			intermediate: [
+				'فانوس بن کر جن کی حفاظت ہوا کرے',
+				'وہ شمع کیا ہی بجھے جسے روشن خدا کرے',
+				'تندی باد مخالف سے نہ گھبرا اے عقاب',
+				'یہ تو چلتی ہے تجھے اونچا اڑانے کے لیئے',
+				'پیار خوبصورت ہے پیار خوب صورت ہے',         
+				'صبر و شکر سے انسان بلندیوں کو پاتا ہے',   
+			],
+		};
+            localStorage.setItem('keyboard_mode', 'phonetic');  
+        const engToUrduMap = {
+            'a': 'ا', 'A': 'آ',  'b': 'ب', 'B': 'ٹ', 'c': 'چ', 'C': 'ث',
+            'd': 'د', 'D': 'ڈ', 'e': 'ع', 'E': 'ٰ', 'f': 'ف', 'F': 'ف',
+            'g': 'گ', 'G': 'غ', 'h': 'ھ', 'H': 'ح', 'i': 'ی', 'I': 'ٰ',
+            'J': 'ض', 'j': 'ج', 'k': 'ک', 'K': 'خ', 'l': 'ل', 'L': 'ل',
+            'm': 'م', 'M': 'م', 'n': 'ن', 'N': 'ں', 'o': 'ہ', 'O': 'ۃ',
+            'p': 'پ', 'P': 'ُ', 'q': 'ق', 'Q': 'ْ', 'r': 'ر', 'R': 'ڑ',
+            's': 'س', 'S': 'ص', 't': 'ت', 'T': 'ٹ', 'u': 'ء', 'U': 'ء',
+            'v': 'ط', 'V': 'ظ', 'w': 'و', 'W': 'ّ', 'x': 'ش', 'X': 'ژ',
+            'y': 'ے', 'Y': 'َ', 'z': 'ز', 'Z': 'ذ', ' ': ' '
+        };
+
+        const urduToEngKeyMap = {
+            'ا': 'A', 'آ': 'A', 'ب': 'B', 'ٹ': 'T', 'چ': 'C', 'ث': 'C',
+            'د': 'D', 'ڈ': 'D', 'ع': 'E', 'ف': 'F', 'ض': 'J', 'گ': 'G',
+            'غ': 'G', 'ح': 'H', 'ھ': 'H', 'ی': 'I', 'ج': 'J', 'ک': 'K',
+            'خ': 'K', 'ل': 'L', 'م': 'M', 'ن': 'N', 'ں': 'N', 'ہ': 'O',
+            'ۃ': 'O', 'پ': 'P', 'ق': 'Q', 'ر': 'R', 'ڑ': 'R', 'س': 'S',
+            'ص': 'S', 'ت': 'T', 'ء': 'U', 'ؤ': 'U', 'ط': 'V', 'ظ': 'V',
+            'و': 'W', 'ش': 'X', 'ژ': 'X', 'ے': 'Y', 'ز': 'Z', 'ذ': 'Z', ' ': 'SPACE'
+        };
+
+        const physicalRows = [
+            [['Q','ق'],['W','و'],['E','ع'],['R','ر'],['T','ت'],['Y','ے'],['U','ء'],['I','ی'],['O','ہ'],['P','پ']],
+            [['A','ا'],['S','س'],['D','د'],['F','ف'],['G','گ'],['H','ح'],['J','ج'],['K','ک'],['L','ل']],
+            [['Z','ز'],['X','ش'],['C','چ'],['V','ط'],['B','ب'],['N','ن'],['M','م']]
+        ];
+
+        const keyMap = {
+            'ا': {key:'A', shift:false}, 'آ': {key:'A', shift:true}, 'ب': {key:'B',shift:false},
+            'پ': {key:'P',shift:false}, 'ت': {key:'T',shift:false}, 'ٹ': {key:'T',shift:true},
+            'ث': {key:'C',shift:true}, 'ج': {key:'J',shift:false}, 'چ': {key:'C',shift:false},
+            'ح': {key:'H',shift:true}, 'خ': {key:'K',shift:true}, 'د': {key:'D',shift:false},
+            'ڈ': {key:'D',shift:true}, 'ذ': {key:'Z',shift:true}, 'ر': {key:'R',shift:false},
+            'ڑ': {key:'R',shift:true}, 'ز': {key:'Z',shift:false}, 'ژ': {key:'X',shift:true},
+            'س': {key:'S',shift:false}, 'ش': {key:'X',shift:false}, 'ص': {key:'S',shift:true},
+            'ض': {key:'J',shift:true}, 'ط': {key:'V',shift:false}, 'ظ': {key:'V',shift:true},
+            'ع': {key:'E',shift:false}, 'غ': {key:'G',shift:true}, 'ف': {key:'F',shift:false},
+            'ق': {key:'Q',shift:false}, 'ک': {key:'K',shift:false}, 'گ': {key:'G',shift:false},
+            'ل': {key:'L',shift:false}, 'م': {key:'M',shift:false}, 'ن': {key:'N',shift:false},
+            'ں': {key:'N',shift:true}, 'و': {key:'W',shift:false}, 'ہ': {key:'O',shift:false},
+            'ۃ': {key:'O',shift:true}, 'ھ': {key:'H',shift:false}, 'ئ': {key:'U',shift:false},
+            'ی': {key:'I',shift:false}, 'ے': {key:'Y',shift:false}, ' ': {key:'SPACE',shift:false}
+        };
+
+        let currentLevel = 'beginner';
+        let lessons = levels[currentLevel];
+        let currentLesson = 0;
+        let started = false;
+        let timeLeft = 60;
+        let maxTime = 60;
+        let timerInterval;
+        let totalElapsedSeconds = 0;
+        let typedString = "";
+        let isFocused = false;
+        let isAppUnlocked = false;
+
+        const textDisplay = document.getElementById('textDisplay');
+        const wrapperArea = document.getElementById('wrapperArea');
+        const mistakesEl = document.getElementById('mistakes');
+        const accuracyEl = document.getElementById('accuracy');
+        const wpmEl = document.getElementById('wpm');
+        const timerEl = document.getElementById('timer');
+        const keySound = document.getElementById('keySound');
+        const errorSound = document.getElementById('errorSound');
+
+        function generatePureNumericId() {
+            const targetString = (navigator.userAgent + screen.width + screen.height + (navigator.hardwareConcurrency || 3));
+            let hash = 0;
+            for (let i = 0; i < targetString.length; i++) {
+                hash = (hash << 5) - hash + targetString.charCodeAt(i);
+                hash |= 0;
+            }
+            let finalNumber = Math.abs(hash) % 1000000;
+            if (finalNumber < 100000) finalNumber += 100000;
+            return finalNumber.toString().padStart(6, '0');
+        }
+
+        const CURRENT_VERSION = 1;
+		const systemId = generatePureNumericId();
+		const currentDeviceID = CURRENT_VERSION + 'MI' + systemId;
+		document.getElementById('deviceIdDisplay').innerText = currentDeviceID;
+
+		const message = encodeURIComponent(`اسلام علیکم!\nمیرا کمپیوٹر کوڈ یہ ہے: ${currentDeviceID}\nبرائے مہربانی مجھے لائسنس فراہم کریں۔`);
+		document.getElementById('whatsappLink').href = `https://wa.me/923337550347?text=${message}`;
+
+        function setTimer(seconds) {
+            maxTime = seconds;
+            timeLeft = seconds;
+            clearInterval(timerInterval);
+            started = false;
+            timerEl.innerText = seconds;
+            document.getElementById('timerNearBox').innerText = seconds;
+            totalElapsedSeconds = 0;
+            wpmEl.innerText = '0';
+            document.querySelectorAll('.timer-buttons button').forEach(btn => btn.classList.remove('active-timer'));
+            document.querySelectorAll('.timer-buttons button').forEach(btn => {
+                if (btn.innerText.trim() === seconds + 's') btn.classList.add('active-timer');
+            });
+            resetTest();
+        }
+
+        function buildKeyboard() {
+            const keyboard = document.getElementById('keyboard');
+            keyboard.innerHTML = '';
+
+            const rows = [
+                physicalRows[0],
+                physicalRows[1],
+                physicalRows[2]
+            ];
+
+            rows.forEach((row, index) => {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'keyboard-row';
+                if (index === 2) {
+                    const shift = document.createElement('div');
+                    shift.className = 'key wide';
+                    shift.id = 'key-LEFTSHIFT';
+                    shift.innerHTML = '<b>Shift</b>';
+                    rowDiv.appendChild(shift);
+                }
+                row.forEach(key => {
+                    const div = document.createElement('div');
+                    div.className = 'key';
+                    div.id = 'key-' + key[0];
+                    let displayUrduChar = key[1];
+                    if (key[0] === 'O') displayUrduChar = 'ہ';
+                    if (key[0] === 'H') displayUrduChar = 'ھ';
+                    if (currentLevel === 'beginner') {
+                        div.innerHTML = `<b>${key[0]}</b><div class="key-ur">${displayUrduChar}</div>`;
+                    } else {
+                        div.innerHTML = `<div class="key-ur">${displayUrduChar}</div>`;
+                    }
+                    rowDiv.appendChild(div);
+                });
+                if (index === 2) {
+                    const shift = document.createElement('div');
+                    shift.className = 'key wide';
+                    shift.id = 'key-RIGHTSHIFT';
+                    shift.innerHTML = '<b>Shift</b>';
+                    rowDiv.appendChild(shift);
+                }
+                keyboard.appendChild(rowDiv);
+            });
+                // ============================================================
+				// گھڑی کے functions
+				// ============================================================
+				function updateAnalogClock() {
+					const canvas = document.getElementById('analogClock');
+					if (!canvas) return;
+					const ctx = canvas.getContext('2d');
+					const w = canvas.width, h = canvas.height;
+					const cx = w/2, cy = h/2, r = 50;
+					
+					ctx.clearRect(0, 0, w, h);
+					
+					// چہرہ
+					ctx.beginPath();
+					ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+					ctx.fillStyle = '#f5e6c8';
+					ctx.fill();
+					ctx.strokeStyle = '#00aaff';
+					ctx.lineWidth = 2;
+					ctx.stroke();
+					
+					// نشانات (اعداد کی جگہ)
+					for (let i = 1; i <= 12; i++) {
+						const a = (i / 12) * 2 * Math.PI - Math.PI / 2;
+						const len = (i % 3 === 0) ? 10 : 6;
+						ctx.beginPath();
+						ctx.moveTo(cx + (r - 4) * Math.cos(a), cy + (r - 4) * Math.sin(a));
+						ctx.lineTo(cx + (r - len) * Math.cos(a), cy + (r - len) * Math.sin(a));
+						ctx.strokeStyle = '#333';
+						ctx.lineWidth = (i % 3 === 0) ? 3 : 1.5;
+						ctx.stroke();
+					}
+					
+					// وقت
+					const now = new Date();
+					const hh = now.getHours() % 12;
+					const mm = now.getMinutes();
+					const ss = now.getSeconds();
+					
+					// گھنٹہ
+					drawHand(ctx, cx, cy, (hh / 12 + mm / 720) * 2 * Math.PI - Math.PI / 2, r * 0.5, 5, '#b8860b');
+					// منٹ
+					drawHand(ctx, cx, cy, (mm / 60 + ss / 3600) * 2 * Math.PI - Math.PI / 2, r * 0.7, 3, '#333');
+					// سیکنڈ
+					drawHand(ctx, cx, cy, (ss / 60) * 2 * Math.PI - Math.PI / 2, r * 0.8, 1.5, '#cc0000');
+					
+					// مرکز
+					ctx.beginPath();
+					ctx.arc(cx, cy, 3, 0, 2 * Math.PI);
+					ctx.fillStyle = '#333';
+					ctx.fill();
+				}
+
+				function drawHand(ctx, cx, cy, angle, length, width, color) {
+					ctx.beginPath();
+					ctx.moveTo(cx, cy);
+					ctx.lineTo(cx + length * Math.cos(angle), cy + length * Math.sin(angle));
+					ctx.strokeStyle = color;
+					ctx.lineWidth = width;
+					ctx.lineCap = 'round';
+					ctx.stroke();
+				}
+
+				// گھڑی چلائیں
+				setInterval(updateAnalogClock, 1000);
+				updateAnalogClock();
+
+            const spaceRow = document.createElement('div');
+            spaceRow.className = 'keyboard-row';
+            const space = document.createElement('div');
+            space.className = 'key space';
+            space.id = 'key-SPACE';
+            spaceRow.appendChild(space);
+            keyboard.appendChild(spaceRow);
+        }
+
+        function toggleInstructions() {
+            document.getElementById('instructionModal').classList.toggle('hidden');
+        }
+
+        function focusInput() {
+            if (isAppUnlocked && timeLeft > 0) {
+                isFocused = true;
+                wrapperArea.classList.add('focused');
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('instructionModal');
+            const modalBox = document.querySelector('.modal-box');
+            const instructionBtn = document.querySelector('.top-instruction-btn');
+            const bottomButtons = document.querySelector('.bottom');
+            if (modal.contains(e.target) || e.target === instructionBtn || (modalBox && modalBox.contains(e.target))) return;
+            if (bottomButtons && bottomButtons.contains(e.target)) { setTimeout(focusInput, 50); return; }
+            if (wrapperArea.contains(e.target)) focusInput();
+            else { isFocused = false; wrapperArea.classList.remove('focused'); }
+        });
+
+        function renderLesson() {
+            const text = lessons[currentLesson];
+            let htmlOutput = '';
+            for (let i = 0; i < text.length; i++) {
+                if (i < typedString.length) {
+                    if (typedString[i] === text[i]) htmlOutput += `<span class="correct">${text[i]}</span>`;
+                    else htmlOutput += `<span class="wrong">${text[i]}</span>`;
+                } else if (i === typedString.length) htmlOutput += `<span class="next-char">${text[i]}</span>`;
+                else htmlOutput += `<span class="pending">${text[i]}</span>`;
+            }
+            textDisplay.innerHTML = htmlOutput;
+         
+
+        const hint = document.getElementById('enterHint');
+        hint.style.display = (typedString.length === text.length && typedString.length > 0) ? 'block' : 'none';
+        }
+
+        function highlightNextKey() {
+            document.querySelectorAll('.key').forEach(key => key.classList.remove('next-key-active', 'shift-active'));
+            if (currentLevel !== 'beginner') return;
+            const text = lessons[currentLesson];
+            const nextChar = text[typedString.length];
+            if (!nextChar) return;
+            const data = keyMap[nextChar];
+            if (!data) return;
+            const keyEl = document.getElementById('key-' + data.key);
+            if (keyEl) keyEl.classList.add('next-key-active');
+            if (data.shift) {
+                document.getElementById('key-LEFTSHIFT')?.classList.add('shift-active');
+                document.getElementById('key-RIGHTSHIFT')?.classList.add('shift-active');
+            }
+        }
+
+        function calculateStats(text, typed) {
+            let mistakes = 0;
+            for (let i = 0; i < typed.length; i++) if (typed[i] !== text[i]) mistakes++;
+            mistakesEl.innerText = mistakes;
+            let accuracy = typed.length ? Math.round(((typed.length - mistakes) / typed.length) * 100) : 100;
+            accuracyEl.innerText = accuracy + '%';
+        }
+
+        function updateProgress() {
+            const text = lessons[currentLesson];
+            document.getElementById('progressFill').style.width = (typedString.length / text.length) * 100 + '%';
+        }
+
+        function processTypingEngine(characterPressed) {
+            const text = lessons[currentLesson];
+            if (characterPressed === 'Backspace') {
+                if (typedString.length > 0) typedString = typedString.substring(0, typedString.length - 1);
+            } else {
+                let mappedChar = (localStorage.getItem('keyboard_mode') !== 'phonetic') ? characterPressed : engToUrduMap[characterPressed];
+                if (!mappedChar) return;
+                if (mappedChar === 'آ') { mappedChar = 'ٓ'; }
+                if (typedString.length >= text.length) return;
+                typedString += mappedChar;
+                if (typedString[typedString.length - 1] !== text[typedString.length - 1]) {
+                    if (errorSound) {
+                        errorSound.currentTime = 0;
+                        errorSound.volume = 0.2;
+                        errorSound.play().catch(() => {});
+                    }
+                }
+            }
+            if (!started && typedString.length > 0) {
+                started = true;
+                startTimer();
+            }
+            calculateStats(text, typedString);
+            renderLesson();
+            highlightNextKey();
+            updateProgress();
+            updateWPM();
+            
+        }
+
+        function updateWPM() {
+            if (totalElapsedSeconds > 0) {
+                let timeSpentMin = totalElapsedSeconds / 60;
+                wpmEl.innerText = Math.round((typedString.length / 5) / timeSpentMin);
+            } else wpmEl.innerText = '0';
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                totalElapsedSeconds++;
+                timerEl.innerText = timeLeft;
+                document.getElementById('timerNearBox').innerText = timeLeft;
+                updateWPM();
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    isFocused = false;
+                    wrapperArea.classList.remove('focused');
+                    alert('⏰ وقت ختم ہو گیا ہے!');
+                }
+            }, 1000);
+        }
+
+        function resetTest() {
+            clearInterval(timerInterval);
+            started = false;
+            timeLeft = maxTime;
+            totalElapsedSeconds = 0;
+            timerEl.innerText = maxTime;
+            document.getElementById('timerNearBox').innerText = maxTime;
+            wpmEl.innerText = '0';
+            mistakesEl.innerText = '0';
+            accuracyEl.innerText = '100%';
+            typedString = '';
+            document.getElementById('progressFill').style.width = '0%';
+            renderLesson();
+            highlightNextKey();
+            setTimeout(focusInput, 50);
+        }
+
+        function nextLesson() {
+			currentLesson = (currentLesson + 1) % lessons.length;
+			typedString = '';
+			started = false;
+			resetTest();
+		}
+
+        function setLevel(level) {
+            currentLevel = level;
+            document.getElementById('lessonsSection').style.display = 'block';
+            document.querySelector('.sidebar-bar').style.display = 'flex';
+            document.querySelector('.keyboard').style.display = 'flex';
+            document.querySelector('.bottom').style.display = 'flex';
+            lessons = levels[level];
+            currentLesson = 0;
+            isFocused = false;
+            wrapperArea.classList.remove('focused');
+
+            document.getElementById('btn-beginner').classList.remove('active-level');
+            document.getElementById('btn-intermediate').classList.remove('active-level');
+            document.getElementById('btn-' + level).classList.add('active-level');
+
+            buildKeyboard();
+            resetTest();
+        }
+
+        let currentTheme = 0;
+        const themes = [
+            { bg: '#07111f', box: '#0d1b2d', card: '#13243b', accent: '#6dd5ff' },
+            { bg: '#06110a', box: '#0d1f13', card: '#12351e', accent: '#49ff87' },
+            { bg: '#1a1204', box: '#2d1f08', card: '#3d2b0d', accent: '#ffb703' }
+        ];
+
+        function changeTheme() {
+            currentTheme = (currentTheme + 1) % themes.length;
+            const t = themes[currentTheme];
+            document.documentElement.style.setProperty('--bg', t.bg);
+            document.documentElement.style.setProperty('--box', t.box);
+            document.documentElement.style.setProperty('--card', t.card);
+            document.documentElement.style.setProperty('--accent', t.accent);
+            setTimeout(focusInput, 50);
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.altKey || e.metaKey || !isAppUnlocked) return;
+            const isInputAllowed = (isFocused && timeLeft > 0);
+            if (!isInputAllowed) return;
+            if (keySound && isFocused) {
+                keySound.currentTime = 0;
+                keySound.play().catch(() => {});
+            }
+            let keyKey = e.key.toUpperCase();
+            if (e.key === ' ') keyKey = 'SPACE';
+            else if (urduToEngKeyMap[e.key]) keyKey = urduToEngKeyMap[e.key];
+            const el = document.getElementById('key-' + keyKey);
+            if (el) el.classList.add('active');
+            if (e.key === 'Shift') {
+                document.getElementById('key-LEFTSHIFT')?.classList.add('active');
+                document.getElementById('key-RIGHTSHIFT')?.classList.add('active');
+            }
+            if (e.key === 'Backspace' || e.key === ' ' || e.key.length === 1) {
+                e.preventDefault();
+                processTypingEngine(e.key);
+            }
+            // Enter دبانے پر اگلا سبق
+		if (e.key === 'Enter' && typedString.length === lessons[currentLesson].length && typedString.length > 0) {
+			e.preventDefault();
+			nextLesson();
+		}
+        });
+
+        window.addEventListener('keyup', (e) => {
+            if (!isAppUnlocked) return;
+            let keyKey = e.key.toUpperCase();
+            if (e.key === ' ') keyKey = 'SPACE';
+            else if (urduToEngKeyMap[e.key]) keyKey = urduToEngKeyMap[e.key];
+            const el = document.getElementById('key-' + keyKey);
+            if (el) el.classList.remove('active');
+            if (e.key === 'Shift') {
+                document.getElementById('key-LEFTSHIFT')?.classList.remove('active');
+                document.getElementById('key-RIGHTSHIFT')?.classList.remove('active');
+            }
+        });
+
+        buildKeyboard();      
+
+        let storedUserName = localStorage.getItem('utm_user_name') || '';
+
+        if (localStorage.getItem('utm_software_licensed') === 'true') {
+            isAppUnlocked = true;
+            document.getElementById('lockScreen').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('displayUserName').innerText = storedUserName || '---';
+            setLevel('beginner');
+        }
+
+		function unlockApp() {
+		if (localStorage.getItem('ad_watched') !== 'true') {
+			alert('⚠️ پہلے Google Ad دیکھیں!');
+			return;
+		}
+		<!-- لاک اسکرین میں -->
+		<div class="lock-box">
+			<!-- آپ کا Google AdSense -->
+			<ins class="adsbygoogle">...</ins>
+			
+			<!-- ⭐ بس یہ ڈالیں (ایڈ لوڈ ہوتے ہی ad_watched = true) -->
+			<script>
+			localStorage.setItem('ad_watched', 'true');
+			</script>
+			
+			<!-- ایکٹیویٹ بٹن -->
+			<button onclick="unlockApp()">ایکٹیویٹ کریں</button>
+		</div>
+
+		<script>
+		// ⭐ unlockApp فنکشن کی پہلی لائن
+		function unlockApp() {
+			if (localStorage.getItem('ad_watched') !== 'true') {
+				alert('⚠️ پہلے ایڈ دیکھیں!');
+				return;
+			}
+			// باقی پرانا کوڈ...
+		}
+		</script>
+			const licenseInput = document.getElementById('licenseInput').value.trim();
+			const lockMsg = document.getElementById('lockMsg');
+			const userNameInput = document.getElementById('userNameInput');
+		
+		// نام چیک
+		//if (userNameInput.value.trim() === "") {
+		//	lockMsg.innerText = '⚠️ براہ کرم پہلے اپنا نام درج کریں!';
+		//	return;
+		//}
+		
+		// لمبائی چیک (9 حروف)
+		if (licenseInput.length !== 9) {
+			lockMsg.innerText = '❌ 9 حروف کا لائسنس درج کریں!';
+			return;
+		}
+		
+		// سگنیچر چیک (شروع میں MI)
+		if (!licenseInput.startsWith('MI')) {
+			lockMsg.innerText = '❌ غلط لائسنس!';
+			return;
+		}
+		
+		// سسٹم آئی ڈی چیک (درمیان کے 6 ہندسے)
+		const idFromLicense = licenseInput.slice(2, 8);
+		const currentId = currentDeviceID.replace(/^[0-9]MI/, '');
+		if (idFromLicense !== currentId) {
+			lockMsg.innerText = '❌ یہ لائسنس اس ڈیوائس پر نہیں چلے گا!';
+			return;
+		}
+		
+		// ورژن چیک (آخری 1 ہندسہ)
+		const versionFromLicense = parseInt(licenseInput.slice(8, 9));
+		if (isNaN(versionFromLicense)) {
+			lockMsg.innerText = '❌ غلط لائسنس فارمیٹ!';
+			return;
+		}
+		
+		// چیک کریں کہ ورژن موجودہ ورژن سے کم تو نہیں
+		if (versionFromLicense < CURRENT_VERSION) {
+			lockMsg.innerText = '⚠️ یہ پرانا ورژن ہے! نیا ورژن ' + CURRENT_VERSION + '.0 خریدین۔';
+			return;
+		}
+		
+		
+		// ✅ سب درست — ایکٹیویٹ کریں
+		const userName = userNameInput.value.trim() || "MI";
+		localStorage.setItem('utm_software_licensed', 'true');
+		localStorage.setItem('utm_user_name', userName);
+		localStorage.setItem('license_version', versionFromLicense);
+		localStorage.setItem('license_data', licenseInput);
+		
+		document.getElementById('lockScreen').style.display = 'none';
+		document.body.style.overflow = 'auto';
+		document.getElementById('displayUserName').innerText = userName;
+		setLevel('beginner');
+		renderLesson();
+		highlightNextKey();
+		
+		alert('✅ لائسنس فعال! ورژن ' + versionFromLicense + '.0');
+        resetTest();
+		isFocused = true;
+		wrapperArea.classList.add('focused');
+		setTimeout(function() {
+			wrapperArea.click();
+			wrapperArea.focus();
+		}, 300);
+	}
+    
+
+        if (!isAppUnlocked) {
+            document.getElementById('lockScreen').style.display = 'flex';
+        }
+
+        window.addEventListener('load', function() {
+            const welcome = document.getElementById('welcomeAudio');
+            if (welcome) welcome.play().catch(function(e) { console.log('آواز نہیں چل سکی:', e); });
+            checkKeyboardLayout();
+        });
+
+        function checkKeyboardLayout() {
+            const currentLayout = navigator.language || 'ur';
+            const isPhonetic = currentLayout === 'ur' || currentLayout === 'ur-PK';
+            if (!isPhonetic) {
+                const instructionBtn = document.querySelector('.top-instruction-btn');
+                if (instructionBtn) {
+                    instructionBtn.style.animation = 'none';
+                    setTimeout(() => {
+                        instructionBtn.style.animation = 'shake 0.5s ease-in-out 3';
+                    }, 10);
+                }
+            }
+        }
+
+         function playWelcomeSound() {
+		   const welcome = document.getElementById('welcomeAudio');
+		   if (welcome) {
+		      welcome.currentTime = 0;
+		      welcome.volume = 0.4;
+			  welcome.play().catch(function(e) {
+			   console.log('آواز نہیں چل سکی:', e);
+			});
+		}
+	}	
+        function setKeyboardMode(mode) {
+            localStorage.setItem('keyboard_mode', mode);
+            const msg = mode === 'phonetic' ? '🔤 فونیٹک موڈ فعال' : '🖥️ ڈیفالٹ موڈ فعال';
+            alert(msg);
+        }
+		function setKeyboardMode(mode) {
+    localStorage.setItem('keyboard_mode', mode);
+    const msg = mode === 'phonetic' ? '🔤 فونیٹک موڈ فعال' : '🖥️ ڈیفالٹ موڈ فعال';
+    alert(msg);
+}
+
+		function openSecureWindow(page) {
+			if (localStorage.getItem('utm_software_licensed') !== 'true') {
+				const userChoice = confirm(
+					'❌ براہ کرم پہلے لائسنس خریدیں!\n' +
+					'ایڈمن سے رابطہ کریں:\n' +
+					'📱 923337550347\n\n' +
+					'🟢 کیا آپ واٹس ایپ پر میسج کرنا چاہیں گے؟'
+				);
+				if (userChoice) {
+					document.getElementById('lockScreen').classList.remove('hidden');
+					document.getElementById('lockScreen').style.display = 'flex';
+					document.body.style.overflow = 'hidden';
+				}
+				return;
+			}
+
+			// ✅ براہِ راست window.open
+			window.open(page, '_blank');
+		}
+
+		window.addEventListener('load', function() {
+			if (localStorage.getItem('utm_software_licensed') === 'true') {
+				return;
+			}
+			setTimeout(function() {
+				document.getElementById('lockScreen').classList.remove('hidden');
+				document.getElementById('lockScreen').style.display = 'flex';
+			}, 60000);
+		});
+    // ===== لائسنس پینل کے لیے ٹوگل بٹن =====
+	let isLicensePlaying = false;
+	let licenseAudio = null;
+
+	function toggleLicenseVoice() {
+		const btn = document.getElementById('toggleLicenseBtn');
+    
+    // آڈیو عنصر حاصل کریں
+    if (!licenseAudio) {
+        licenseAudio = document.getElementById('licenseVoice');
+    }
+    
+    if (isLicensePlaying) {
+       
+	   // ===== OFF: آواز روکیں =====
+        licenseAudio.pause();
+        licenseAudio.currentTime = 0;
+        isLicensePlaying = false;
+        
+        // بٹن تبدیل کریں
+        btn.innerHTML = '🔊 لائسنس سنیں';
+        btn.style.background = '#25d366';
+        btn.style.color = '#fff';
+    } else {
+       
+	   // ===== ON: آواز چلائیں =====
+        licenseAudio.currentTime = 0;
+        licenseAudio.play().catch(() => {
+            // اگر MP3 نہ ہو تو TTS استعمال کریں
+            const text = document.querySelector('.photo-panel h3')?.innerText || '';
+            if (text && 'speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ur-PK';
+                utterance.rate = 0.9;
+                speechSynthesis.speak(utterance);
+            }
+        });
+        isLicensePlaying = true;
+        
+        // بٹن تبدیل کریں
+        btn.innerHTML = '⏹️ روکیں (لائسنس)';
+        btn.style.background = '#ff6b6b';
+        btn.style.color = '#fff';
+    }
+    }
+
+	// جب آواز ختم ہو جائے تو بٹن ری سیٹ ہو جائے
+	document.getElementById('licenseVoice')?.addEventListener('ended', function() {
+    const btn = document.getElementById('toggleLicenseBtn');
+    if (btn) {
+        isLicensePlaying = false;
+        btn.innerHTML = '🔊 لائسنس سنیں';
+        btn.style.background = '#25d366';
+        btn.style.color = '#fff';
+    }
+  });
+		
+		// ہدایات کے لیے ٹوگل بٹن
+		let isInstructionsPlaying = false;
+		let instructionsAudio = null;
+
+		function toggleInstructionsVoice() {
+			const btn = document.getElementById('instructionsVoiceBtn');
+			
+			if (!instructionsAudio) {
+				instructionsAudio = document.getElementById('instructionsVoice');
+			}
+			
+			if (isInstructionsPlaying) {
+				// OFF: آواز روکیں
+				instructionsAudio.pause();
+				instructionsAudio.currentTime = 0;
+				isInstructionsPlaying = false;
+				btn.innerHTML = '🔊 سنیں (ہدایات)';
+				btn.style.background = '#ffb703';
+				btn.style.color = '#000';
+			} else {
+				// ON: آواز چلائیں
+				instructionsAudio.currentTime = 0;
+				instructionsAudio.play().catch(() => {
+					// اگر MP3 نہ ہو تو TTS استعمال کریں
+					const modal = document.querySelector('.modal-box');
+					const paragraphs = modal.querySelectorAll('p, h3, li, h2');
+					let text = '';
+					paragraphs.forEach(el => {
+						text += el.innerText + ' ';
+					});
+					if (text && 'speechSynthesis' in window) {
+						const utterance = new SpeechSynthesisUtterance(text);
+						utterance.lang = 'ur-PK';
+						utterance.rate = 0.9;
+						speechSynthesis.speak(utterance);
+					}
+				});
+				isInstructionsPlaying = true;
+				btn.innerHTML = '⏹️ روکیں (ہدایات)';
+				btn.style.background = '#ff6b6b';
+				btn.style.color = '#fff';
+			}
+		}
+
+		// جب آواز ختم ہو جائے تو بٹن ری سیٹ ہو جائے
+		document.getElementById('instructionsVoice')?.addEventListener('ended', function() {
+			const btn = document.getElementById('instructionsVoiceBtn');
+			if (btn) {
+				isInstructionsPlaying = false;
+				btn.innerHTML = '🔊 سنیں (ہدایات)';
+				btn.style.background = '#ffb703';
+				btn.style.color = '#000';
+			}
+		});
+		
+		// ===== لاک باکس کے لیے ٹوگل بٹن =====
+		let isLockBoxPlaying = false;
+		let lockBoxAudio = null;
+
+		function toggleLockBoxVoice() {
+			const btn = document.getElementById('toggleLockBoxBtn');
+			
+			if (!lockBoxAudio) {
+				lockBoxAudio = document.getElementById('lockBoxVoice');
+			}
+			
+			if (isLockBoxPlaying) {
+				// OFF: آواز روکیں
+				lockBoxAudio.pause();
+				lockBoxAudio.currentTime = 0;
+				isLockBoxPlaying = false;
+				btn.innerHTML = '🔊 سنیں (لاک باکس)';
+				btn.style.background = '#6dd5ff';
+				btn.style.color = '#000';
+			} else {
+				// ON: آواز چلائیں
+				lockBoxAudio.currentTime = 0;
+				lockBoxAudio.play().catch(() => {
+					// اگر MP3 نہ ہو تو TTS استعمال کریں
+					const text = "لاک باکس عناصر: نام لکھیں، لائسنس درج کریں، ایکٹیویٹ کریں، واٹس ایپ پر بھیجیں، یوٹیوب لنک، واٹس ایپ رابطہ۔";
+					if (text && 'speechSynthesis' in window) {
+						const utterance = new SpeechSynthesisUtterance(text);
+						utterance.lang = 'ur-PK';
+						utterance.rate = 0.9;
+						speechSynthesis.speak(utterance);
+					}
+				});
+				isLockBoxPlaying = true;
+				btn.innerHTML = '⏹️ روکیں (لاک باکس)';
+				btn.style.background = '#ff6b6b';
+				btn.style.color = '#fff';
+			}
+		}
+
+		// جب آواز ختم ہو جائے تو بٹن ری سیٹ ہو جائے
+		document.getElementById('lockBoxVoice')?.addEventListener('ended', function() {
+			const btn = document.getElementById('toggleLockBoxBtn');
+			if (btn) {
+				isLockBoxPlaying = false;
+				btn.innerHTML = '🔊 سنیں (لاک باکس)';
+				btn.style.background = '#6dd5ff';
+				btn.style.color = '#000';
+			}
+		});
+    </script>
+</body>
+</html>                            Saturday, August 8, 2026
