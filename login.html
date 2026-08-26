@@ -105,13 +105,17 @@
         
         <button onclick="login()">🚪 لاگ ان کریں</button>
         <div class="error" id="loginError">❌ غلط صارف نام یا پاس ورڈ!</div>
+        <div class="info" id="passwordHint">🔑 موجودہ پاس ورڈ: admin123</div>
     </div>
 
     <script>
         // ===== موجودہ پاس ورڈ حاصل کریں =====
         function getCurrentPassword() {
-           return localStorage.getItem('adminPassword') || 'admin123';
+            return localStorage.getItem('adminPassword') || 'admin123';
         }
+
+        // ===== پاس ورڈ ہنٹ دکھائیں =====
+        document.getElementById('passwordHint').textContent = '🔑 موجودہ پاس ورڈ: ' + getCurrentPassword();
 
         // ===== لاگ ان فنکشن =====
         function login() {
