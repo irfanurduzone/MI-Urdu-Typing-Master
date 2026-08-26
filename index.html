@@ -318,7 +318,7 @@
         </div>
     </section>
 
-       <!-- ===== ڈاؤن لوڈ سیکشن ===== -->
+    <!-- ===== ڈاؤن لوڈ سیکشن ===== -->
     <section class="download-section" id="download">
         <h2>📥 ڈاؤن لوڈ کریں</h2>
         <p>اپنے سسٹم کے مطابق ورژن منتخب کریں</p>
@@ -345,81 +345,93 @@
         <p>© 2026 Urdu Typing Master — تمام حقوق محفوظ</p>
     </div>
 
-    <!-- ===== مین اسکرپٹ ===== -->
     <script>
-        // ===== 1. ڈاؤن لوڈ کاؤنٹر =====
-        let downloadCount = parseInt(localStorage.getItem('webDownloadCount') || '0');
-        document.getElementById('downloadCount').textContent = downloadCount;
-
-        function countDownload(type) {
-            downloadCount++;
-            localStorage.setItem('webDownloadCount', downloadCount);
-            document.getElementById('downloadCount').textContent = downloadCount;
-            console.log(type + ' ڈاؤن لوڈ: ' + downloadCount);
+    // ===== 1. ڈاؤن لوڈ کاؤنٹر - سب کے لیے =====
+    async function updateCount() {
+        try {
+            let r = await fetch('https://api.countapi.xyz/hit/mi_typing/total');
+            let d = await r.json();
+            return d.value || 0;
+        } catch {
+            let c = parseInt(localStorage.getItem('dc') || '0') + 1;
+            localStorage.setItem('dc', c);
+            return c;
         }
+    }
 
-        // ===== 2. ایڈ واچڈ چیک کریں =====
-        function checkAdWatched(event) {
-            const adWatched = localStorage.getItem('ad_watched');
+    async function countDownload(type) {
+        let total = await updateCount();
+        document.getElementById('downloadCount').textContent = total;
+        alert('✅ ڈاؤن لوڈ شروع! کل: ' + total);
+        return true;
+    }
+
+    // ===== 2. ایڈ واچڈ چیک کریں =====
+    function checkAdWatched(event) {
+        const adWatched = localStorage.getItem('ad_watched');
+        
+        if (adWatched !== 'true') {
+            event.preventDefault();
+            alert('⚠️ براہ کرم پہلے اوپر والا Google Ad دیکھیں!\n\nپھر "ٹائپنگ شروع کریں" بٹن دبائیں۔');
             
-            if (adWatched !== 'true') {
-                event.preventDefault();
-                alert('⚠️ براہ کرم پہلے اوپر والا Google Ad دیکھیں!\n\nپھر "ٹائپنگ شروع کریں" بٹن دبائیں۔');
-                
-                document.getElementById('topAd').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                document.getElementById('topAd').style.border = '3px solid #ffb703';
-                document.getElementById('topAd').style.borderRadius = '10px';
-                setTimeout(() => {
-                    document.getElementById('topAd').style.border = 'none';
-                }, 3000);
-                
-                return false;
-            }
+            document.getElementById('topAd').scrollIntoView({ behavior: 'smooth', block: 'center' });
             
-            return true;
+            document.getElementById('topAd').style.border = '3px solid #ffb703';
+            document.getElementById('topAd').style.borderRadius = '10px';
+            setTimeout(() => {
+                document.getElementById('topAd').style.border = 'none';
+            }, 3000);
+            
+            return false;
         }
+        
+        return true;
+    }
 
-        // ===== 3. ایڈ دیکھنے کا فنکشن =====
-        function markAdWatched() {
-            localStorage.setItem('ad_watched', 'true');
-            
-            const status = document.getElementById('adStatus');
-            status.innerHTML = '✅ ایڈ دیکھ لیا! اب "ٹائپنگ شروع کریں" پر کلک کریں۔';
-            status.style.color = '#49ff87';
-            
-            document.getElementById('adBadge').classList.add('show');
-            
-            const btn = document.getElementById('typingBtn');
-            btn.style.background = '#49ff87';
-            btn.style.boxShadow = '0 0 50px rgba(73,255,135,0.5)';
-            btn.innerHTML = '🚀 ٹائپنگ شروع کریں (انلاک)';
-            
-            console.log('✅ ایڈ دیکھ لیا! ٹائپنگ کے لیے تیار۔');
-        }
+    // ===== 3. ایڈ دیکھنے کا فنکشن =====
+    function markAdWatched() {
+        localStorage.setItem('ad_watched', 'true');
+        
+        const status = document.getElementById('adStatus');
+        status.innerHTML = '✅ ایڈ دیکھ لیا! اب "ٹائپنگ شروع کریں" پر کلک کریں۔';
+        status.style.color = '#49ff87';
+        
+        document.getElementById('adBadge').classList.add('show');
+        
+        const btn = document.getElementById('typingBtn');
+        btn.style.background = '#49ff87';
+        btn.style.boxShadow = '0 0 50px rgba(73,255,135,0.5)';
+        btn.innerHTML = '🚀 ٹائپنگ شروع کریں (انلاک)';
+        
+        console.log('✅ ایڈ دیکھ لیا! ٹائپنگ کے لیے تیار۔');
+    }
 
-        // ===== 4. صفحہ لوڈ ہونے پر =====
-        window.addEventListener('load', function() {
-            if (localStorage.getItem('ad_watched') === 'true') {
-                markAdWatched();
-            }
-            
-            // 5 سیکنڈ بعد ایڈ کو خودکار لوڈ شدہ سمجھیں
-            setTimeout(function() {
-                if (localStorage.getItem('ad_watched') !== 'true') {
-                    // آپ یہاں اپنے AdSense کے ایونٹ پر markAdWatched() کال کریں گے
-                }
-            }, 5000);
-        });
+    // ===== 4. صفحہ لوڈ ہونے پر =====
+    window.addEventListener('load', function() {
+        // ڈاؤن لوڈ کاؤنٹ دکھائیں
+        fetch('https://api.countapi.xyz/get/mi_typing/total')
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('downloadCount').textContent = d.value || 0;
+            })
+            .catch(() => {
+                document.getElementById('downloadCount').textContent = localStorage.getItem('dc') || 0;
+            });
 
-        // ===== 5. صارف ایڈ کلک کرے تو =====
-        function userClickedAd() {
+        // ایڈ چیک کریں
+        if (localStorage.getItem('ad_watched') === 'true') {
             markAdWatched();
-            alert('✅ شکریہ! اب آپ ٹائپنگ شروع کر سکتے ہیں۔');
         }
+    });
 
-        console.log('✅ live-index.html لائیو ہے!');
-        console.log('ad_watched status:', localStorage.getItem('ad_watched'));
+    // ===== 5. صارف ایڈ کلک کرے تو =====
+    function userClickedAd() {
+        markAdWatched();
+        alert('✅ شکریہ! اب آپ ٹائپنگ شروع کر سکتے ہیں۔');
+    }
+
+    console.log('✅ live-index.html لائیو ہے!');
+    console.log('ad_watched status:', localStorage.getItem('ad_watched'));
     </script>
 
 </body>
