@@ -3,102 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urdu Typing Master - ایڈمن پینل</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ایڈمن پینل - Urdu Typing Master</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Nastaliq Urdu', 'Poppins', sans-serif;
+            background: #08080a;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: #111115;
+            border-bottom: 1px solid rgba(0,240,255,0.1);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #6dd5ff;
+        }
+        .logo span {
+            color: #ffb703;
+            font-size: 14px;
+        }
+        .btn-danger {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-danger:hover {
+            background: #c53030;
+            transform: scale(1.05);
+        }
+        .btn-primary {
+            background: #38a169;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-primary:hover {
+            background: #2f855a;
+            transform: scale(1.02);
+        }
+        .btn-warning {
+            background: #d69e2e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-warning:hover {
+            background: #b7791f;
+            transform: scale(1.02);
+        }
+        .section-container {
+            padding: 30px 8%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        .admin-card {
+            background: #111115;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            max-width: 700px;
+            width: 100%;
+            text-align: right;
+        }
+        .admin-card h3 {
+            color: #6dd5ff;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+        .admin-card label {
+            display: block;
+            color: #aaa;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .admin-card input, .admin-card textarea, .admin-card select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #1a1a2e;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 15px;
+            outline: none;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .admin-card input:focus, .admin-card textarea:focus {
+            border-color: #6dd5ff;
+        }
+        .admin-card textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        .admin-card .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .admin-card .input-group input {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        /* ===== کاؤنٹ باکس ===== */
+        .count-box {
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,183,3,0.2);
+        }
+        .count-box .number {
+            font-size: 52px;
+            font-weight: 700;
+            color: #ffb703;
+        }
+        .count-box .label {
+            color: #aaa;
+            font-size: 16px;
+        }
+        .count-details {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .count-details div {
+            background: #1a1a2e;
+            padding: 12px 25px;
+            border-radius: 10px;
+            min-width: 120px;
+        }
+        .count-details .num {
+            font-size: 28px;
+            font-weight: 700;
+            color: #49ff87;
+        }
+        .count-details .num.blue {
+            color: #6dd5ff;
+        }
+        .count-details .sub-label {
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* ===== رسپانسیو ===== */
+        @media (max-width: 600px) {
+            .navbar { flex-direction: column; text-align: center; }
+            .count-box .number { font-size: 36px; }
+            .count-details div { min-width: 80px; padding: 10px 15px; }
+            .count-details .num { font-size: 20px; }
+        }
+
+        /* ===== ٹوسٹ نوٹیفکیشن ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #38a169;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+        .toast.error {
+            background: #e53e3e;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- نیویگیشن بار -->
+    <!-- ===== نیویگیشن ===== -->
     <nav class="navbar">
-        <div class="logo">Urdu Typing Master - ایڈمن ڈیش بورڈ</div>
-        <button onclick="logout()" style="background: #e53e3e; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">لاگ آؤٹ</button>
+        <div class="logo">🖊️ ایڈمن ڈیش بورڈ <span>| Urdu Typing Master</span></div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <span style="color: #49ff87; font-size: 14px;" id="adminUser">👤 admin</span>
+            <button onclick="logout()" class="btn-danger">🚪 لاگ آؤٹ</button>
+        </div>
     </nav>
 
-    <section style="padding: 40px 8%; display: flex; flex-direction: column; align-items: center; gap: 30px;">
-        
-        <!-- ۱. ڈاؤن لوڈ لنک اپڈیٹ کنٹرول -->
-        <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); max-width: 600px; width: 100%; text-align: right;">
-            <h3 style="color: #2b6cb0; margin-bottom: 20px;">1. ڈاؤن لوڈ لنک اور فائل کنٹرول (data.json)</h3>
-            
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">موجودہ ورژن:</label>
-                <input type="text" id="admin-version" value="v1.0.0" style="width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 5px;">
-            </div>
+    <section class="section-container">
 
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">فائل سائز:</label>
-                <input type="text" id="admin-size" value="15.4 MB" style="width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 5px;">
+        <!-- ===== 1. ڈاؤن لوڈ رپورٹ ===== -->
+        <div class="admin-card" style="border-color: rgba(255,183,3,0.2);">
+            <h3>📊 ڈاؤن لوڈ رپورٹ</h3>
+            <div class="count-box">
+                <div class="label">📥 کل ڈاؤن لوڈز</div>
+                <div class="number" id="adminTotalCount">0</div>
+                <div class="count-details">
+                    <div>
+                        <div class="sub-label">🖥️ سیٹ اپ</div>
+                        <div class="num" id="adminSetupCount">0</div>
+                    </div>
+                    <div>
+                        <div class="sub-label">💼 پورٹیبل</div>
+                        <div class="num blue" id="adminPortableCount">0</div>
+                    </div>
+                </div>
             </div>
-
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">ریلیز کی تاریخ:</label>
-                <input type="text" id="admin-date" value="2026-08-10" style="width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 5px;">
+            <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                <button onclick="refreshCount()" class="btn-primary" style="flex:1;">🔄 ریفریش کریں</button>
+                <button onclick="resetCount()" class="btn-warning" style="flex:1;">🔄 کاؤنٹ ری سیٹ کریں</button>
             </div>
-
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">سافٹ ویئر کا ڈائریکٹ ڈاؤن لوڈ لنک (Google Drive / MediaFire):</label>
-                <input type="text" id="admin-url" value="https://example.com/setup.exe" style="width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 5px;">
-            </div>
-
-            <button onclick="generateDataJson()" style="background: #38a169; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 15px; font-weight: bold; cursor: pointer;">نئی data.json فائل ڈاؤن لوڈ کریں</button>
         </div>
 
-        <!-- ۲. اپڈیٹ ہسٹری کنٹرول -->
-        <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); max-width: 600px; width: 100%; text-align: right;">
-            <h3 style="color: #2b6cb0; margin-bottom: 20px;">2. اپڈیٹس ہسٹری کنٹرول (version.json)</h3>
+        <!-- ===== 2. ڈاؤن لوڈ لنک کنٹرول ===== -->
+        <div class="admin-card">
+            <h3>📦 ڈاؤن لوڈ لنک اور فائل کنٹرول (data.json)</h3>
             
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">لیٹسٹ ورژن:</label>
-                <input type="text" id="admin-latest-ver" value="v1.0.0" style="width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 5px;">
-            </div>
+            <label>موجودہ ورژن:</label>
+            <input type="text" id="admin-version" value="v1.0.0">
 
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">نیا کیا ہے؟ (پوائنٹس کو کوما (,) سے الگ کریں):</label>
-                <textarea id="admin-notes" style="width: 100%; height: 80px; padding: 8px; border: 1px solid #cbd5e0; border-radius: 5px;">اردو ٹائپنگ ماسٹر کا پہلا آفیشل ریلیز۔, ہارڈ ویئر آئی ڈی لائسنس سسٹم۔, فونٹک کی بورڈ لے آؤٹ۔</textarea>
-            </div>
+            <label>فائل سائز:</label>
+            <input type="text" id="admin-size" value="125 MB">
 
-            <button onclick="generateVersionJson()" style="background: #38a169; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 15px; font-weight: bold; cursor: pointer;">نئی version.json فائل ڈاؤن لوڈ کریں</button>
+            <label>ریلیز کی تاریخ:</label>
+            <input type="text" id="admin-date" value="2026-08-26">
+
+            <label>سافٹ ویئر کا ڈائریکٹ ڈاؤن لوڈ لنک:</label>
+            <input type="text" id="admin-url" value="https://github.com/irfanurduzone/MI-Urdu-Typing-Master/releases/download/v1.0.0/2.in.1.Typing.Master.Setup.x64.1.0.0.exe">
+
+            <label>پورٹیبل ورژن کا لنک:</label>
+            <input type="text" id="admin-url-portable" value="https://github.com/irfanurduzone/MI-Urdu-Typing-Master/releases/download/v1.0.0/2.in.1.Typing.Master-Portable-x641.0.0.exe">
+
+            <button onclick="generateDataJson()" class="btn-primary" style="width:100%;">📥 data.json ڈاؤن لوڈ کریں</button>
+        </div>
+
+        <!-- ===== 3. اپڈیٹ ہسٹری کنٹرول ===== -->
+        <div class="admin-card">
+            <h3>📝 اپڈیٹس ہسٹری کنٹرول (version.json)</h3>
+            
+            <label>لیٹسٹ ورژن:</label>
+            <input type="text" id="admin-latest-ver" value="v1.0.0">
+
+            <label>نیا کیا ہے؟ (پوائنٹس کو کوما (,) سے الگ کریں):</label>
+            <textarea id="admin-notes">اردو ٹائپنگ ماسٹر کا پہلا آفیشل ریلیز۔,ہارڈویئر آئی ڈی لائسنس سسٹم۔,فونٹک کی بورڈ لے آؤٹ۔,ڈاؤن لوڈ کاؤنٹر شامل۔</textarea>
+
+            <button onclick="generateVersionJson()" class="btn-primary" style="width:100%;">📥 version.json ڈاؤن لوڈ کریں</button>
+        </div>
+
+        <!-- ===== 4. سسٹم انفارمیشن ===== -->
+        <div class="admin-card" style="border-color: rgba(109,213,255,0.1);">
+            <h3>ℹ️ سسٹم کی معلومات</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div><label style="color:#666; font-size:12px;">ویب سائٹ</label><br><span style="color:#6dd5ff;">irfanurduzone.github.io</span></div>
+                <div><label style="color:#666; font-size:12px;">ریلیزز</label><br><span style="color:#6dd5ff;">v1.0.0</span></div>
+                <div><label style="color:#666; font-size:12px;">آخری اپڈیٹ</label><br><span style="color:#6dd5ff;" id="lastUpdate">-</span></div>
+                <div><label style="color:#666; font-size:12px;">کلوز</label><br><span style="color:#6dd5ff;" id="adminStatus">🟢 آن لائن</span></div>
+            </div>
         </div>
 
     </section>
 
+    <!-- ===== ٹوسٹ میسیج ===== -->
+    <div class="toast" id="toast"></div>
+
     <script>
-        // سیکورٹی چیک (اگر لاگ ان نہیں ہے تو لاگ ان پیج پر بھیج دیں)
+        // ===== سیکورٹی چیک =====
         if (localStorage.getItem('isAdminLoggedIn') !== 'true') {
             window.location.href = 'login.html';
         }
 
+        // ===== صارف کا نام دکھائیں =====
+        document.getElementById('adminUser').textContent = '👤 ' + (localStorage.getItem('adminUsername') || 'admin');
+
+        // ===== آخری اپڈیٹ =====
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleString('ur-PK');
+
+        // ===== لاگ آؤٹ =====
         function logout() {
-            localStorage.removeItem('isAdminLoggedIn');
-            window.location.href = 'login.html';
+            if (confirm('کیا آپ واقعی لاگ آؤٹ کرنا چاہتے ہیں؟')) {
+                localStorage.removeItem('isAdminLoggedIn');
+                localStorage.removeItem('adminUsername');
+                window.location.href = 'login.html';
+            }
         }
 
-        // data.json فائل بنانے کا فنکشن
+        // ===== ٹوسٹ میسیج =====
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast' + (isError ? ' error' : '');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // ===== 1. ڈاؤن لوڈ کاؤنٹ حاصل کریں =====
+        async function getDownloadCounts() {
+            try {
+                let r1 = await fetch('https://api.countapi.xyz/get/mi_typing/total');
+                let d1 = await r1.json();
+                let r2 = await fetch('https://api.countapi.xyz/get/mi_typing_setup/total');
+                let d2 = await r2.json();
+                let r3 = await fetch('https://api.countapi.xyz/get/mi_typing_portable/total');
+                let d3 = await r3.json();
+                return {
+                    total: d1.value || 0,
+                    setup: d2.value || 0,
+                    portable: d3.value || 0
+                };
+            } catch (error) {
+                return { total: 0, setup: 0, portable: 0 };
+            }
+        }
+
+        // ===== 2. کاؤنٹ ڈسپلے کریں =====
+        async function refreshCount() {
+            try {
+                const counts = await getDownloadCounts();
+                document.getElementById('adminTotalCount').textContent = counts.total;
+                document.getElementById('adminSetupCount').textContent = counts.setup;
+                document.getElementById('adminPortableCount').textContent = counts.portable;
+                showToast('✅ کاؤنٹ ریفریش ہو گئی!');
+            } catch {
+                showToast('❌ کاؤنٹ ریفریش میں غلطی!', true);
+            }
+        }
+
+        // ===== 3. کاؤنٹ ری سیٹ کریں =====
+        async function resetCount() {
+            if (!confirm('⚠️ کیا آپ واقعی تمام ڈاؤن لوڈ کاؤنٹ ری سیٹ کرنا چاہتے ہیں؟ یہ عمل واپس نہیں ہو سکتا!')) {
+                return;
+            }
+            
+            try {
+                // ری سیٹ کرنے کے لیے countapi.xyz پر ری سیٹ کا طریقہ نہیں ہے
+                // اس لیے ہم صارف کو بتاتے ہیں
+                showToast('⚠️ countapi.xyz پر کاؤنٹ ری سیٹ نہیں کر سکتے۔ نیا نام استعمال کریں۔', true);
+            } catch {
+                showToast('❌ ری سیٹ میں غلطی!', true);
+            }
+        }
+
+        // ===== 4. data.json بنائیں =====
         function generateDataJson() {
             const data = {
                 software_name: "Urdu Typing Master",
                 current_version: document.getElementById('admin-version').value,
                 release_date: document.getElementById('admin-date').value,
                 file_size: document.getElementById('admin-size').value,
-                download_url: document.getElementById('admin-url').value
+                download_url: document.getElementById('admin-url').value,
+                download_url_portable: document.getElementById('admin-url-portable').value,
+                total_downloads: document.getElementById('adminTotalCount').textContent || '0'
             };
             downloadJSON(data, 'data.json');
+            showToast('✅ data.json ڈاؤن لوڈ ہو گئی!');
         }
 
-        // version.json فائل بنانے کا فنکشن
+        // ===== 5. version.json بنائیں =====
         function generateVersionJson() {
             const rawNotes = document.getElementById('admin-notes').value.split(',');
             const notes = rawNotes.map(note => note.trim());
-            
             const versionData = {
                 latest_version: document.getElementById('admin-latest-ver').value,
-                patch_notes: notes
+                patch_notes: notes,
+                last_updated: new Date().toISOString().split('T')[0]
             };
             downloadJSON(versionData, 'version.json');
+            showToast('✅ version.json ڈاؤن لوڈ ہو گئی!');
         }
 
-        // JSON فائل کمپیوٹر میں سیو کروانے کا طریقہ
+        // ===== 6. JSON ڈاؤن لوڈ =====
         function downloadJSON(obj, filename) {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj, null, 4));
             const downloadAnchor = document.createElement('a');
@@ -107,8 +417,21 @@
             document.body.appendChild(downloadAnchor);
             downloadAnchor.click();
             downloadAnchor.remove();
-            alert(filename + " آپ کے کمپیوٹر میں ڈاؤن لوڈ ہو گئی ہے! اسے اپنے پروجیکٹ کے فولڈر میں پرانی فائل سے تبدیل کر کے نیٹ لیفائی پر اپلوڈ کریں۔");
         }
+
+        // ===== 7. صفحہ لوڈ ہونے پر =====
+        window.addEventListener('load', function() {
+            refreshCount();
+            // ہر 30 سیکنڈ بعد خودکار ریفریش
+            setInterval(refreshCount, 30000);
+        });
+
+        // ===== 8. Enter key سپورٹ =====
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
