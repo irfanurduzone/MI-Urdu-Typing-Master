@@ -3,65 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urdu Typing Master - ایڈمن لاگ ان</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ایڈمن لاگ ان - Urdu Typing Master</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Nastaliq Urdu', 'Poppins', sans-serif;
+            background: #08080a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container {
+            background: #111115;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(0,240,255,0.1);
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 60px rgba(0,0,0,0.5);
+        }
+        .login-container h1 {
+            color: #6dd5ff;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .login-container p {
+            color: #888;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .login-container label {
+            display: block;
+            color: #aaa;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #1a1a2e;
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .login-container input:focus {
+            border-color: #6dd5ff;
+            box-shadow: 0 0 20px rgba(109,213,255,0.1);
+        }
+        .login-container button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #6dd5ff;
+            color: #000;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .login-container button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(109,213,255,0.3);
+        }
+        .login-container .error {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        .login-container .info {
+            color: #49ff87;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+        }
+    </style>
 </head>
 <body>
-
-    <!-- نیویگیشن بار -->
-    <nav class="navbar">
-        <div class="logo">Urdu Typing Master</div>
-        <ul class="nav-links">
-            <li><a href="index.html">ہوم</a></li>
-            <li><a href="downloads.html">ڈاؤن لوڈز</a></li>
-            <li><a href="updates.html">اپڈیٹس</a></li>
-            <li><a href="login.html" class="active">ایڈمن لاگ ان</a></li>
-        </ul>
-    </nav>
-
-    <!-- لاگ ان فارم -->
-    <section style="padding: 80px 8%; display: flex; justify-content: center;">
-        <div style="background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); max-width: 400px; width: 100%; text-align: right;">
-            <h2 style="color: #2b6cb0; text-align: center; margin-bottom: 25px;">ایڈمن لاگ ان</h2>
-            
-            <form id="login-form">
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">یوزر نیم (Username):</label>
-                    <input type="text" id="username" style="width: 100%; padding: 10px; border: 1px solid #cbd5e0; border-radius: 5px; outline: none; font-size: 16px;" required>
-                </div>
-
-                <div style="margin-bottom: 25px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">پاس ورڈ (Password):</label>
-                    <input type="password" id="password" style="width: 100%; padding: 10px; border: 1px solid #cbd5e0; border-radius: 5px; outline: none; font-size: 16px;" required>
-                </div>
-
-                <button type="submit" style="width: 100%; background: #2b6cb0; color: white; border: none; padding: 12px; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer;">لاگ ان کریں</button>
-            </form>
-            <p id="error-msg" style="color: #e53e3e; text-align: center; margin-top: 15px; display: none;">غلط یوزر نیم یا پاس ورڈ!</p>
-        </div>
-    </section>
-
-    <!-- فوٹر -->
-    <footer class="footer" style="position: fixed; bottom: 0; width: 100%;">
-        <p>&copy; 2026 Urdu Typing Master. تمام حقوق محفوظ ہیں۔</p>
-    </footer>
+    <div class="login-container">
+        <h1>🔐 ایڈمن لاگ ان</h1>
+        <p>براہ کرم ایڈمن پینل میں داخل ہونے کے لیے لاگ ان کریں</p>
+        
+        <label>👤 صارف نام</label>
+        <input type="text" id="admin-username" value="admin" placeholder="صارف نام درج کریں">
+        
+        <label>🔑 پاس ورڈ</label>
+        <input type="password" id="admin-password" placeholder="پاس ورڈ درج کریں">
+        
+        <button onclick="login()">🚪 لاگ ان کریں</button>
+        <div class="error" id="loginError">❌ غلط صارف نام یا پاس ورڈ!</div>
+        <div class="info" id="passwordHint">🔑 موجودہ پاس ورڈ: admin123</div>
+    </div>
 
     <script>
-        // پاس ورڈ اور یوزر نیم کی چیکنگ
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
+        // ===== موجودہ پاس ورڈ حاصل کریں =====
+        function getCurrentPassword() {
+            return localStorage.getItem('adminPassword') || 'admin123';
+        }
 
-            // یہاں ڈیفالٹ یوزر نیم admin اور پاس ورڈ 12345 رکھا ہے
-            if (user === 'admin' && pass === '12345') {
+        // ===== پاس ورڈ ہنٹ دکھائیں =====
+        document.getElementById('passwordHint').textContent = '🔑 موجودہ پاس ورڈ: ' + getCurrentPassword();
+
+        // ===== لاگ ان فنکشن =====
+        function login() {
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+            const currentPassword = getCurrentPassword();
+            
+            // ✅ صارف نام اور پاس ورڈ چیک کریں
+            if (username === 'admin' && password === currentPassword) {
                 localStorage.setItem('isAdminLoggedIn', 'true');
+                localStorage.setItem('adminUsername', username);
                 window.location.href = 'admin.html';
             } else {
-                document.getElementById('error-msg').style.display = 'block';
+                document.getElementById('loginError').style.display = 'block';
+                document.getElementById('admin-password').value = '';
+                document.getElementById('admin-password').focus();
+            }
+        }
+
+        // ===== Enter key دبانے پر لاگ ان =====
+        document.getElementById('admin-password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
             }
         });
+
+        // ===== اگر پہلے سے لاگ ان ہے تو ایڈمن پینل پر بھیجیں =====
+        if (localStorage.getItem('isAdminLoggedIn') === 'true') {
+            window.location.href = 'admin.html';
+        }
     </script>
 </body>
 </html>
